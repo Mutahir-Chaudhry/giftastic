@@ -9,14 +9,17 @@ $(document).ready(function(){
         //Created all necessary initial varaibles.
         var input = $(this).attr("data-name");
         var limit = 10;
-        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=oI7YWn3aO9m0rxfhuemjd1sPvKxsUk2D&q=" + input + "&limit=" + limit + "&offset=0&rating=G&lang=en"
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q="+ input +"&api_key=oI7YWn3aO9m0rxfhuemjd1sPvKxsUk2D&limit=" + limit
         //AJAX used to utilize API
         $.ajax({
             url: queryURL,
             method: "GET"
-        }).done(function(response){
+        }).then(function(response){
+            console.log(queryURL);
+            console.log(response);
+            var results = response.data
             //Creating a for loop to create a new div everytime there is a call to the API, for up to the limit of gifs, which is defaulted to 10.
-            for(var i = 0; i < limit; i++){
+            for(var a = 0; a < input.length; a++){
                 //Creating a variable that will create new div for every iteration of the loop.
                 var newDiv = $("<div>");
                 //Need each div to have its own class
@@ -24,20 +27,21 @@ $(document).ready(function(){
                 //Created a variable that will create a new img within the div created. We will then use this new varaible to pull the different attributes from the API.
                 var gif = $("<img>");
                 //Now we will reference each part of the new image called and assign different parts of the response data to each part of the image.
-                gif.attr("src", response.data[i].images.original_still.url);
+                gif.attr("src", results[a].images.fixed_height_still.url);
+                gif.attr("data-still", results[a].images.fixed_height_still.url);
+                gif.attr("data-animate", results[a].images.fixed_height.url);
                 gif.attr("data-state", "still");
-                gif.attr("data-still", response.data[i].images.orignal_still.url);
-                gif.attr("class", "gif");
-                gif.attr("data-animate", response.data[i].images.orginal.url);
+                gif.addClass("gif");
                 //After assigning the respective data from the response from the API to the gif to be displayed, we now add this gif to the newDiv variable we created.
                 newDiv.append(gif)
                 //Now we need to create a variable to store the rating retrieved from the gif data. 
-                var ratings = response.data[i].rating;
+                var ratings = results[a].rating;
+                console.log(ratings)
                 //After creating the variable ratings to store the rating, we add this to the newDiv variable we just created, but we want it to be dispayed with a label, so we have to assign it to another varaible that will be appended to our newDiv.
                 var  ratingsDisplay = $("<p>").text("The Rating for this gif is: " + ratings)
                 newDiv.append(ratingsDisplay)
                 //Now that everything has been added to the new div created everytime we pull a gif from our API, we now add all this to our displaygifs div already within our html.
-                $("#displaygifs").append(newDiv);
+                $("#displaygifs").prepend(newDiv);
             }
         });
     }
@@ -46,14 +50,14 @@ $(document).ready(function(){
         //Need to first empty the button div so we can run our for loop to poplate as many buttons as there are strings in our buttonsShown array.
         $("#buttons").empty();
         //We create a for loop to run for the iteration of our buttonsShown array.
-        for (var i = 0; i < buttonsShown.length; i++){
+        for (var b = 0; b < buttonsShown.length; b++){
             //Everytime our loop runs, a new button will be created and stored in our newButton vairable. 
             var newButton = $("<button>")
             //For every new button created, we want to assign specific attributes, inlcuding a class, id, and name, that will be pulled from the name provided. 
             newButton.attr("class", "btn btn-default");
             newButton.attr("id", "input")  
-            newButton.attr("data-name", displayedButtons[i]); 
-            newButton.text(displayedButtons[i]); 
+            newButton.attr("data-name", buttonsShown[b]); 
+            newButton.text(buttonsShown[b]); 
             //We will then add this new button to the our buttons div. 
             $("#buttons").append(newButton); 
         }
@@ -83,7 +87,15 @@ $(document).ready(function(){
         var input = $("#animalsearch").val().trim();
         FormData.reset();
         buttonsShown.push(input);
+        //Once the button has been clicked, we want to run the createButtons function to add any additional buttons to be displayed. 
+        createButtons();
+        return false;
     })
+    //Once all our functions are complete, we want to make sure the buttons in our original array display when the document loads. So we once again, call our createButtons funciton outside all other funcitons.
+    createButtons();
+    //Lastly, we add our on click function for buttons and gifs. 
+    $(document).on("click", "#input", displayGIFs);
+    $(document).on("click", ".gif", clickChange);
 
 
 })
