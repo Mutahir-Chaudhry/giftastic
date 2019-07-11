@@ -20,8 +20,12 @@ $(document).ready(function(){
                 var newDiv = $("<div>");
                 //Need each div to have its own class
                 newDiv.addClass("newDiv");
+                //Created a variable that will create a new img within the div created. We will then use this new varaible to pull the different attributes from the API.
+                var gif = $("<img>");
+        
+              
 
-                
+
 
             }
         })
