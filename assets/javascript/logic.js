@@ -58,7 +58,18 @@ $(document).ready(function(){
             $("#buttons").append(newButton); 
         }
     }
+    //Now that we've created the function to pull the gif from the API, and the function to create new buttons, we will now work on the function to start and stop our gifs when clicked. 
+    function clickChange () {
+        //We first have to create a varaible to store the original state of the image when recieved. We previously set this data state to still in our first displayGIFs function.
+        var gifState = $(this).attr("data-state");
+        //We now create a new variable to change the state of the gif to animated
+        var gifAnimate = $(this).attr("data-animate");
+        //Just like the variable was created to change the state of the gif to animated, we now make one the change the state to still
+        var gifStill = $(this).attr("data-still");
 
+        
+
+    }
 
 })
 
