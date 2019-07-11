@@ -22,6 +22,14 @@ $(document).ready(function(){
                 newDiv.addClass("newDiv");
                 //Created a variable that will create a new img within the div created. We will then use this new varaible to pull the different attributes from the API.
                 var gif = $("<img>");
+                //Now we will reference each part of the new image called and assign different parts of the response data to each part of the image.
+                gif.attr("src", reponse.data[i].images.original_still.url);
+                gif.attr("data-state", "still");
+                gif.attr("data-still", response.data[i].images.orignal_still.url);
+                gif.attr("class", "gif");
+                gif.attr("data-animate", response.data[i].images.orginal.url);
+                
+
         
               
 
