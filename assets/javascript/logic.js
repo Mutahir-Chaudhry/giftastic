@@ -66,9 +66,16 @@ $(document).ready(function(){
         var gifAnimate = $(this).attr("data-animate");
         //Just like the variable was created to change the state of the gif to animated, we now make one the change the state to still
         var gifStill = $(this).attr("data-still");
-
-        
-
+        //Now we create an if else statement that will animate if it is still, or make still if it is animated. Either one of which will take place when the function is called, which is done on the click of a gif. 
+        if (state === "still"){
+            //First, if the image is still, we will target the image source to get the animated version, and then change the data state to animated. 
+            $(this).attr("src", gifAnimate);
+            $(this).attr("data-state", "animate");
+        }else if(state === "animate"){
+            //Now if the image is animated, we will target the image source to get the still version, and then change the data state to animated. 
+            $(this).attr("src", stillImage);
+            $(this).attr("data-state", "still");
+        }
     }
 
 })
