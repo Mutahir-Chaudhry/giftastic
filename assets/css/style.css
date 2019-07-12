@@ -1,7 +1,10 @@
 body {
     background-image: url("../images/Zoo Wallpaper.jpg");
-    background-size: cover;
+    background-position: 50%
 }
 .form-group{
     color: white;
+}
+#input{
+    color:white;
 }
