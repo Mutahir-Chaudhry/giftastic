@@ -19,7 +19,7 @@ $(document).ready(function(){
             console.log(response);
             var results = response.data
             //Creating a for loop to create a new div everytime there is a call to the API, for up to the limit of gifs, which is defaulted to 10.
-            for(var a = 0; a < input.length; a++){
+            for(var a = 0; a < limit; a++){
                 //Creating a variable that will create new div for every iteration of the loop.
                 var newDiv = $("<div>");
                 //Need each div to have its own class
@@ -84,7 +84,7 @@ $(document).ready(function(){
     //Now that we have the function to pull gifs from the api, function to create new buttons, and function to change the state of our gif, we will lastly create the on click function for our submit button. 
     $("#submitbutton").on("click", function(){
         //We start by creating a variable to store the animanl name given by user in the form. After storing the value, we reset the form and push the collected value to our buttonsShown array.
-        var input = $("#animalsearch").val().trim();
+        var input = $("#animalSearch").val().trim();
         FormData.reset();
         buttonsShown.push(input);
         //Once the button has been clicked, we want to run the createButtons function to add any additional buttons to be displayed. 
