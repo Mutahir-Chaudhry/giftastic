@@ -1,4 +1,4 @@
-# giftastic
+# GIF ZOO!
 What the project does:
 This project uses an API provided by GIPHY API to search for and populate up to 10 gifs related to the animal selected. If any one of the GIFs is clicked, they will go from a still frame state to their animated gif state. If clicked again, you can stop the animated state to make it still again. There is an option to search for a new animal that would populate a new button, that would populate the gifs like the default buttons. Unfortunately, this portion of the assignment is still being worked on. However, everything else checks out!
 
