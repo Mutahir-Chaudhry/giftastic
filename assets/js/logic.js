@@ -1,7 +1,7 @@
 $(document).ready(function(){
     console.log("hello")
     // created an array for all of our initial buttons. Going with the animal theme. 
-    var buttonsShown = ["Lion", "Cat", "Dog", "Zebra", "Monkey", "Horse", "Cow", "Crow", "Shark", "Bear", "Penguin", "Goat", "Sheep", "Chicken", "Snake", "Lizard", "Bird"];
+    var buttonsShown = ["Lion", "Cat", "Dog", "Zebra", "Monkey", "Horse", "Cow", "Crow", "Shark", "Bear", "Penguin", "Goat", "Sheep", "Chicken", "Snake", "Lizard"];
     // began the function to actually pull and populate the displaygif with the requested api call.
     function displayGIFs (){
         //Need to first empty the gif display so we dont have it putting new gifs on previous gifs.
@@ -89,7 +89,7 @@ $(document).ready(function(){
         buttonsShown.push(userInput);
         //Once the button has been clicked, we want to run the createButtons function to add any additional buttons to be displayed. 
         createButtons();
-return false;
+// return false;
     })
     //Once all our functions are complete, we want to make sure the buttons in our original array display when the document loads. So we once again, call our createButtons funciton outside all other funcitons.
     createButtons();

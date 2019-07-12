@@ -1,10 +1,22 @@
 body {
     background-image: url("../images/Zoo Wallpaper.jpg");
-    background-position: 50%
+    background-size: 100%
 }
 .form-group{
     color: white;
 }
 #input{
     color:white;
+    background-color: rgb(10, 59, 10);
+    margin: 2px;
+}
+#title{
+    background-color: transparent;
+    color: rgb(10, 59, 10);
+}
+.display-4{
+    text-align: center;
+}
+#searchHelp{
+    color:rgb(10, 59, 10);
 }
